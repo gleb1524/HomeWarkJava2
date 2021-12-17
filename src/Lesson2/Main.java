@@ -28,7 +28,7 @@ public class Main {
        int sum = 0;
 
         for (int i = 0; i < a.length; i++) {
-            if ((a[i].length != 4) | a.length != 4) {
+            if ((a[i].length != 4) || a.length != 4) {
             throw new MyArraySizeException("Создайте двумерный массив 4х4");
         }
             for (int j = 0; j < a.length; j++) {
