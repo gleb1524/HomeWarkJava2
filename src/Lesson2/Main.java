@@ -22,7 +22,6 @@ public class Main {
             System.err.println("Проверьте тип данных");
             System.out.println(checkArr(arr));
         }
-       // System.out.println(checkArr(arr));
     }
     public static int  checkArr(String[][] a) throws MyArraySizeException, MyArrayDataException{
        int sum = 0;
