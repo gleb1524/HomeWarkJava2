@@ -1,5 +1,5 @@
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         nonTread();
         onTread();
     }
@@ -16,10 +16,12 @@ public class Main {
         }
         long b = System.currentTimeMillis();
         System.out.println(b-a);
+        //для того, чтобы проверить правильно ли отработал второй метод
+        System.out.println(arr[1]+" "+arr[size-1]);
 
     }
 
-    public static void onTread(){
+    public static void onTread() throws InterruptedException {
         final int size = 10000000;
         final int h = size/2;
         float[] arr = new float[size];
@@ -40,16 +42,20 @@ public class Main {
 
         Thread thread2 = new Thread(() -> {
             for (int i = 1; i < h; i++) {
-                a2[i] = (float)((a2[i]+h) * Math.sin(0.2f + (i+h) / 5) * Math.cos(0.2f + (i+h) / 5) * Math.cos(0.4f + (i+h) / 2));
+                a2[i] = (float)((a2[i]) * Math.sin(0.2f + (i+h) / 5) * Math.cos(0.2f + (i+h) / 5) * Math.cos(0.4f + (i+h) / 2));
             }
         });
 //        thread1.setDaemon(true);
 //        thread2.setDaemon(true);
         thread1.start();
         thread2.start();
-        System.arraycopy(a1, 0, arr, 0, 5000000);
-        System.arraycopy(a2, 0, arr, 5000000, 5000000);
+        thread1.join();
+        thread2.join();
+        System.arraycopy(a1, 0, arr, 0, h);
+        System.arraycopy(a2, 0, arr, h, h);
         long b = System.currentTimeMillis();
         System.out.println(b-a);
+        //проверка правильно ли отработал второй метод
+        System.out.println(arr[1]+ " " + arr[size-1]);
     }
 }
