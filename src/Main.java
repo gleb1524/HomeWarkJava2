@@ -16,7 +16,7 @@ public class Main {
         }
         long b = System.currentTimeMillis();
         System.out.println(b-a);
-        System.out.println(arr[3]);
+
     }
 
     public static void onTread(){
@@ -50,11 +50,6 @@ public class Main {
         System.arraycopy(a1, 0, arr, 0, 5000000);
         System.arraycopy(a2, 0, arr, 5000000, 5000000);
         long b = System.currentTimeMillis();
-
-        for (int i = 0; i < 100; i++) {
-            System.out.println(arr[i]);
-        }
-        System.out.println(arr[4]);
         System.out.println(b-a);
     }
 }
